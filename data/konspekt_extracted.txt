@@ -1,5 +1,3 @@
---- Page 1 ---
-
 Batyskaf​
 
 Cel lekcji
@@ -23,7 +21,6 @@ etapami prezentowanymi przez trenera.
 ●​ Inna np. praca samodzielna - jeśli zostało to wskazane w konspekcie tej
 lekcji.
 
---- Page 2 ---
 Rekomendacje:
 ●​ Przećwicz przebieg lekcji zgodnie z konspektem. Pamiętaj żeby lekcję
 przerobić przed zajęciami z grupą.
@@ -35,7 +32,6 @@ czy tę grupową, jeśli osiągną zamierzony efekt.
 ●​ Przygotuj dodatkowe materiały, jeśli uważasz, że twoi uczniowie mogą
 potrzebować dodatkowych wyjaśnień i przykładów.​
 
---- Page 3 ---
 Spis treści
 1.​ Wstęp (5-10 min)
 ●​ Rozmowa na luźne tematy
@@ -65,7 +61,6 @@ Kamienie milowe w konspekcie zajęć dotyczą kluczowych etapów realizacji lekc
 ich ukończenie oznacza że trener zrealizował wskazaną partię materiału, przedstawił
 zagadnienie, wykonał dany krok w budowaniu projektu.​
 
---- Page 4 ---
 
 1. Wstęp (5-10 min)
 
@@ -107,7 +102,6 @@ Mozaika - powiela obraz w formie mozaiki
 Jasność - zwiększa jasność grafiki Duszka.
 Duch - zwiększa przezroczystość grafiki Duszka.
 
---- Page 5 ---
 Nałożone efekty nie zmieniają w sposób trwały wyglądu duszka,
 resetują się wraz z ponownym uruchomieniem gry lub po
 wykorzystaniu bloku Wyczyść efekty graficzne
@@ -152,12 +146,6 @@ Na demonstracji widzę batyskaf jako główną postać, przeciwników
 duszków wykorzystywany do strzałów oraz bloki komunikatów, które
 sterują zdarzeniami w grze.
 
---- Page 6 ---
-​
-​
-​
-
---- Page 7 ---
 2. Część właściwa lekcji (70-80 min)​
 
 Link do projektu starter: Link do remiksu lub Link do pliku​
@@ -185,8 +173,6 @@ Możesz też skorzystać z techniki rozsypanki bloków aby ułatwić
 pracę uczestnikom.​
 Ważne, upewnij się czy uczestnicy wiedzą co jest do zrobienia.​
 
---- Page 8 ---
-​
 
 Co możemy jeszcze poprawić w naszym sterowaniu?​
 Dodać ograniczenie żeby batyskaf nie mógł wypłynąć poza scenę.​
@@ -198,7 +184,6 @@ uczestników co ewentualnie możemy jeszcze poprawić w naszym sterowaniu.​
 Co możemy jeszcze poprawić w naszym sterowaniu?​
 Dodać ograniczenie żeby batyskaf nie mógł wypłynąć poza scenę.​
 
---- Page 9 ---
 
 Dodajemy na samym końcu skryptu nowy blok, będzie to blokada
 poruszania się batyskafu poza scenę. Od razu sprawdzamy efekt
@@ -222,10 +207,7 @@ klonów jeśli chcemy strzelać serią to musimy ustawić mniejszy czas.
 
 Programujemy działanie klonów​
 ​
-Każdy klon musi wiedzieć jak ma się zachowywać w naszej grze
-
---- Page 10 ---
-dlatego należy skorzystać z bloku
+Każdy klon musi wiedzieć jak ma się zachowywać w naszej grze dlatego należy skorzystać z bloku
 ​
 następnie pokazujemy kopię i przemieszczamy ją w aktualną pozycję
 naszego statku​
@@ -246,7 +228,6 @@ Testujemy działanie strzelania.
 Zaczynamy od zaprogramowania mechanizmu klonowania
 samoczynnie po określonym czasie.
 
---- Page 11 ---
 
 Określamy zachowanie każdego klona.​
 Każdy klon posiada wylosowaną pozycję x oraz stałą wysokość
@@ -267,14 +248,12 @@ Ważne, upewnij się czy uczestnicy wiedzą co jest do zrobienia.​
 ​
 Zadanie do zaprogramowania:
 
---- Page 12 ---
 Jeżeli rekin dotknie pocisku wystrzelonego przez batyskaf wtedy
 znika a batyskaf otrzymuje punkt. Jeżeli dotknie batyskafu wtedy
 batyskaf traci jedno życie a rekin znika.​
 Dodajemy dwa bloki jeżeli… a uczestnicy sami próbują
 dokończyć.
 
---- Page 13 ---
 ​
 
 Testujemy rozgrywkę.
@@ -291,7 +270,6 @@ Wykorzystamy teraz komunikaty, które mogą być wysłane w
 dowolnym momencie naszej gry, duszki mogą odbierać komunikaty
 wysyłane pomiędzy sobą i odpowiednio reagować
 
---- Page 14 ---
 
 Odbieramy komunikaty za pomocą bloków:
 
@@ -304,7 +282,6 @@ Testujemy działanie.​
 Co jeszcze na tą chwilę powinniśmy poprawić po wygranej lub przegranej grze?
 Ukrycie duszków
 
---- Page 15 ---
 
 Do duszka Batyskaf dodajemy bloki który ukryją duszka w momencie
 wygranej lub przegranej.
@@ -337,7 +314,6 @@ określony warunek.
 w grze?​
 Komunikaty pozwalają na przesyłanie informacji między różnymi duszkami.
 
---- Page 16 ---
 Na przykład, gdy jeden duszek (pocisk) trafia przeciwnika, wysyłany jest
 komunikat, który może spowodować zmniejszenie HP gracza lub
 aktualizację punktacji. Dzięki temu elementy gry współpracują ze sobą.
@@ -358,7 +334,6 @@ Ważne jest aby styl obrotu Bossa był wybrany na lewo/prawo.
 Dodajemy także ukrycie duszka po otrzymaniu komunikatów
 Wygrana i Przegrana.
 
---- Page 17 ---
 
 Dodanie zmiennych HP Boss oraz Punkty.
 
@@ -372,11 +347,10 @@ Zestrzelenie ośmiornicy przy pomocy pocisku zabiera jej jeden punkt
 W scenie edytujemy warunek zwycięstwa w grze.​
 W którym uwzględnimy pokonanie Bossa.
 
---- Page 18 ---
 
 Dodanie efektów po kolizji pocisku z bossem.
 
---- Page 19 ---
+
 
 Dodanie pocisku którymi strzela Boss​
 Dodanie pocisku przeciwnika, który pojawia się co pewien czas pod
@@ -398,12 +372,10 @@ Gdy zetknie się z batyskafem zmienia jego punkty życia o 2 i znika
 
 Tworzymy rozsypankę bloków uczestnicy próbują samodzielnie
 
---- Page 20 ---
+
 zaprogramować wzorując się na skryptach rekina​
 
---- Page 21 ---
 
---- Page 22 ---
 3. Zakończenie lekcji (5-10 minut)
 ​
 Podsumowanie lekcji - na koniec zajęć podsumuj co udało wam się
@@ -433,15 +405,5 @@ koniec czy może ktoś ma jeszcze jakieś pytania dotyczące bieżącej lekcji l
 inne.​
 ​
 ​
-​
-​
-​
-
---- Page 23 ---
+​​
 4. Przegląd skryptów z lekcji​
-
---- Page 24 ---
-
---- Page 25 ---
-
---- Page 26 ---
