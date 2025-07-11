@@ -17,22 +17,28 @@ from collections.abc import AsyncGenerator, AsyncIterable, Coroutine, Generator
 
 import logging
 from prompts import Prompts
+from sending_images import start_video
 
 load_dotenv()
 
 
 
 class Assistant(Agent):
-    def __init__(self, lesson_outline) -> None:
+    def __init__(self, lesson_outline, start_video_callback) -> None:
         self.lesson_outline = lesson_outline
         instructions = Prompts.SYSTEM_MESSAGE.format(lesson_outline=lesson_outline)
         super().__init__(instructions=instructions)
+        self.start_video_callback = start_video_callback
+        self.video_started = False
+        self._video_track = None
+        self._video_task = None
 
     async def on_enter(self) -> None:
         logging.debug("Entering...")
 
     async def on_exit(self) -> None:
         logging.debug("Exiting...")
+        self.session._forward_video_task
 
     async def on_user_turn_completed(
         self, turn_ctx: llm.ChatContext, new_message: llm.ChatMessage
@@ -64,31 +70,21 @@ class Assistant(Agent):
     ):
         logging.debug("LLM node")
         logging.debug("%s %s %s", chat_ctx.to_dict(), tools, model_settings)
+
+        self.video_started = True
+        self._video_track, self._video_task = self.start_video_callback()
         return super().llm_node(chat_ctx, tools, model_settings)
     
-    def transcription_node(
-        self, text: AsyncIterable[str], model_settings: ModelSettings
-    ) -> AsyncIterable[str] | Coroutine[Any, Any, AsyncIterable[str]] | Coroutine[Any, Any, None]:
 
-        logging.debug("Transcription node")
-        return super().transcription_node(text, model_settings)
-
-    def tts_node(
-        self, text: AsyncIterable[str], model_settings: ModelSettings
-    ) -> (
-        AsyncGenerator[rtc.AudioFrame, None]
-        | Coroutine[Any, Any, AsyncIterable[rtc.AudioFrame]]
-        | Coroutine[Any, Any, None]
-    ):
-        logging.debug("TTS node")
-        logging.debug("text: %s, model_settings: %s", text, model_settings)
-        return super().tts_node(text, model_settings)
 
 
 def get_lesson_outline():
     with open('./data/konspekt_extracted.txt', 'r') as f:
         contents = f.read()
         return contents
+    
+
+
 
 async def entrypoint(ctx: agents.JobContext):
     lesson_outline = get_lesson_outline() 
@@ -103,7 +99,8 @@ async def entrypoint(ctx: agents.JobContext):
 
     await session.start(
         room=ctx.room,
-        agent=Assistant(lesson_outline),
+        #agent=Assistant(lesson_outline),
+        agent = Assistant(lesson_outline, start_video_callback=lambda: asyncio.create_task(start_video(ctx.room))),
         room_input_options=RoomInputOptions(
             # LiveKit Cloud enhanced noise cancellation
             # - If self-hosting, omit this parameter
@@ -118,6 +115,43 @@ async def entrypoint(ctx: agents.JobContext):
         instructions=Prompts.INITIAL_INSTRUCTIONS
     )
 
+from livekit import rtc
+from livekit.agents import JobContext
+import asyncio
+
+async def f(ctx):
+    WIDTH = 640
+    HEIGHT = 480
+
+    source = rtc.VideoSource(WIDTH, HEIGHT)
+    track = rtc.LocalVideoTrack.create_video_track("example-track", source)
+    options = rtc.TrackPublishOptions(
+        # since the agent is a participant, our video I/O is its "camera"
+        source=rtc.TrackSource.SOURCE_CAMERA,
+        simulcast=True,
+        # when modifying encoding options, max_framerate and max_bitrate must both be set
+        video_encoding=rtc.VideoEncoding(
+            max_framerate=30,
+            max_bitrate=3_000_000,
+        ),
+        video_codec=rtc.VideoCodec.H264,
+    )
+    publication = await ctx.agent.publish_track(track, options)
+
+    # this color is encoded as ARGB. when passed to VideoFrame it gets re-encoded.
+    COLOR = [255, 255, 0, 0]; # FFFF0000 RED
+
+    async def _draw_color():
+        argb_frame = bytearray(WIDTH * HEIGHT * 4)
+        while True:
+            await asyncio.sleep(0.1) # 10 fps
+            argb_frame[:] = COLOR * WIDTH * HEIGHT
+            frame = rtc.VideoFrame(WIDTH, HEIGHT, rtc.VideoBufferType.RGBA, argb_frame)
+
+            # send this frame to the track
+            source.capture_frame(frame)
+
+    return _draw_color
 
 
 def main():
