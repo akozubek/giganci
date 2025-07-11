@@ -37,8 +37,8 @@ async def start_video(room):
     
             await asyncio.sleep(1 / FPS)
 
-    asyncio.create_task(send_frames())
-    return video_track
+    video_task = asyncio.create_task(send_frames())
+    return video_track, video_task
 
 async def stop_video(room, video_task, video_track):
     if video_task:

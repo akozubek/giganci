@@ -1,6 +1,5 @@
 import fitz  # PyMuPDF
 import re
-import sys
 from pathlib import Path
 
 def extract_pdf_text(pdf_path):
@@ -20,9 +19,8 @@ def extract_pdf_text(pdf_path):
         # Extract text from all pages
         full_text = ""
         for page_num in range(len(doc)):
-            page = doc.load_page(page_num)
+            page: fitz.Page = doc.load_page(page_num)
             text = page.get_text()
-            full_text += f"\n--- Page {page_num + 1} ---\n"
             full_text += text
             
         doc.close()
