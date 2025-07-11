@@ -1,0 +1,2 @@
+# Zależności dla skryptów jednorazowych
+PyMuPDF==1.23.26
