@@ -79,7 +79,7 @@ class Assistant(Agent):
 
 
 def get_lesson_outline():
-    with open('./data/konspekt_extracted.txt', 'r') as f:
+    with open('./data/skrypt-dla-ucznia-4o.md', 'r') as f:
         contents = f.read()
         return contents
     
@@ -91,7 +91,7 @@ async def entrypoint(ctx: agents.JobContext):
 
     session = AgentSession(
         stt=deepgram.STT(model="nova-2", language="pl"),
-        llm=openai.LLM(model="gpt-4o"),
+        llm=openai.LLM(model="gpt-4o-mini"),
         tts=cartesia.TTS(model="sonic-multilingual", voice="f786b574-daa5-4673-aa0c-cbe3e8534c02", language="pl"),
         vad=silero.VAD.load(),
         turn_detection=MultilingualModel(),
@@ -99,12 +99,11 @@ async def entrypoint(ctx: agents.JobContext):
 
     await session.start(
         room=ctx.room,
-        #agent=Assistant(lesson_outline),
-        agent = Assistant(lesson_outline, start_video_callback=lambda: asyncio.create_task(start_video(ctx.room))),
+        agent = Assistant(lesson_outline=lesson_outline, 
+                          start_video_callback=lambda: asyncio.create_task(start_video(ctx.room))),
         room_input_options=RoomInputOptions(
             # LiveKit Cloud enhanced noise cancellation
-            # - If self-hosting, omit this parameter
-            # - For telephony applications, use `BVCTelephony` for best results
+            # - If self-hosting, omit this parameter            
             noise_cancellation=noise_cancellation.BVC(), 
         ),
     )
