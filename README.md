@@ -36,11 +36,14 @@ Nie jest to dokładnie to, o co prosiliście w zadaniu, ale w praktyce daje duż
 
 Obrazki kroków przygotowałam ręcznie. Uważam jednak, że można stworzyć automatyczny proces przygotowania takich danych (przetworzony konspekt + obrazy) bezpośrednio ze źródłowych plików, na podstawie których wygenerowano PDF (zakładam, że macie dostęp do tych materiałów). Nie było to jednak głównym celem zadania, dlatego zdecydowałam się odpuścić pełną automatyzację.
 
+Nie wszystkie kroki mają przygotowane obrazki — celowo pominęłam część z nich, ponieważ w ramach tego POC chciałam skupić się głównie na przetestowaniu mechanizmu, a nie na kompletności wszystkich grafik (czytaj: nie chciało mi się ;-)).
+
 W tym projekcie świadomie zrezygnowałam z użycia wektorowej bazy danych ze względu na konieczność działania w czasie rzeczywistym (kontekst z konspektu w zupełności wystarcza).
 
-i jeszcze można jsony użyć
+
 
 ## Wnioski i uwagi
 
 - Trochę trudno zmusić agenta, żeby mówił naturalnie i nie rozwlekał odpowiedzi. Nadal wypowiedzi są dość formalne i podręcznikowe jak na rozmowę z dzieckiem.
 - Głos w języku polskim ma fatalny amerykański akcent. W Cartesii nie ma prawdziwego polskiego głosu. Zdecydowałam się użyć tego, co było dostępne. Trzeba by poszukać, czy w ogóle istnieje polski głos dostępny w czasie rzeczywistym — to jest absolutnie niezbędne do stworzenia dobrej jakości agenta głosowego dla dzieci! (To będzie też wyzwanie w innych językach).
+- W plikach `.sb3` (projektach Scratch) znajduje się plik `project.json`, który zawiera pełną strukturę projektu (np. bloki kodu, sprite’y, zmienne). Można go dodatkowo wykorzystać, żeby agent jeszcze dokładniej podpowiadał dziecku, co zrobić w danym momencie lub jak naprawić błąd. Na potrzeby tego POC nie używałam tych danych, ale w przyszłości można je zintegrować, żeby jeszcze bardziej wzbogacić rozmowę i wsparcie agenta.
