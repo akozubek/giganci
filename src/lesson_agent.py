@@ -98,18 +98,19 @@ class LessonAssistant(Agent):
         Displays the image for the given solution step to the student.
 
         Args:
-            solution_step_identifier (str): The identifier of the step (e.g., '1a', '3b', 'bonus_a') to show to the student
+            solution_step_identifier (str): The identifier of the step (e.g., '1a', '3b', 'bonus_a') to show to the student. 
+                You can also use the special identifier 'game' to show what the finished game looks like.
 
         Returns:
             bool: True if the image started displaying successfully, False otherwise.
         """
 
         # Komentarze jest po angielsku, bo jest przekazywany do LLM
-        logging.info("Displaying image for step %s", solution_step_identifier)
+        logging.info("Looking for image %s", solution_step_identifier)
         solution_image_path = get_step_image_path(solution_step_identifier)
 
         if os.path.exists(solution_image_path):
-            logging.debug("Found image file %s", solution_image_path)
+            logging.info("Found image file %s", solution_image_path)
 
             await self._image_streamer.update_image(solution_image_path)
             if self._video_started:
@@ -118,7 +119,7 @@ class LessonAssistant(Agent):
             self._video_started = True
             return True
         else:
-            logging.debug("Image for step %s not found", solution_step_identifier)
+            logging.info("Image for step %s not found", solution_step_identifier)
             return False
     
 
