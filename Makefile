@@ -3,8 +3,8 @@ activate:
 	source venv/bin/activate
 
 dev:
-	python src/agent.py dev
+	python src/lesson_agent.py dev
 
 console:
-	python src/agent.py console
+	python src/lesson_agent.py console
 
