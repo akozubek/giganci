@@ -2,13 +2,59 @@
 
 ## Opis agenta
 
-Agent (LessonAssistant) został stworzony jako rozwiązanie zadania rekrutacyjnego. Jego celem jest wspieranie dziecka podczas lekcji online, w oparciu o dostarczony konspekt lekcji.
-
-Agent działa zarówno w trybie głosowym, jak i tekstowym — odpowiada na pytania dziecka, udziela wskazówek i zachęca do samodzielnego myślenia.
+LessonAssistant to agent wspierający dziecko podczas lekcji online, w oparciu o dostarczony konspekt lekcji. Działa w trybie głosowym i tekstowym — odpowiada na pytania, udziela wskazówek oraz zachęca do samodzielnego myślenia i szukania rozwiązań.
 
 W kanale wideo agent potrafi wyświetlać grafiki lub obrazy związane z rozwiązaniem (np. kolejne kroki lub gotową wersję gry). Potencjalnie może też pokazywać inne materiały graficzne lub wideo — na prośbę dziecka albo z własnej inicjatywy, jeśli uzna, że to potrzebne do lepszego zrozumienia lekcji.
 
-Dzięki personalizacji (imię, płeć, pełny konspekt) agent prowadzi rozmowę w sposób przyjazny i dopasowany do uczestnika.
+Agent zna imię oraz płeć dziecka, dzięki czemu zwraca się do niego we właściwym rodzaju gramatycznym. 
+
+
+## Instrukcja uruchomienia
+
+Instrukcje dla Linuksa. Nie mam dostępu do Windowsa.
+
+W pliku `.env` dodaj klucze:
+```
+# Klucz API do transkrypcji mowy
+DEEPGRAM_API_KEY=your_deepgram_api_key_here
+# Klucz API do komunikacji z modelem OpenAI
+OPENAI_API_KEY=your_openai_api_key_here
+# Klucz API do Cartesia
+CARTESIA_API_KEY=your_cartesia_api_key_here
+# Klucz API do LiveKit 
+LIVEKIT_API_KEY=your_livekit_api_key_here
+# Sekretny klucz do LiveKit (do uwierzytelniania)
+LIVEKIT_API_SECRET=your_livekit_api_secret_here
+# URL serwera LiveKit
+LIVEKIT_URL=your_livekit_url_here
+```
+
+Stwórz środowisko wirtualne:
+```
+python -m venv venv
+```
+
+Aktywuj środowisko:
+```
+source venv/bin/activate
+```
+
+Zainstaluj zależności:
+```
+pip install -r requirements.txt
+```
+
+Uruchom wersję deweloperską:
+```
+make dev
+```
+
+Uruchom wersję głosową w konsoli.
+```
+make console
+```
+
+
 
 ## Struktura kodu
 
@@ -38,7 +84,7 @@ Obrazki kroków przygotowałam ręcznie. Uważam jednak, że można stworzyć au
 
 Nie wszystkie kroki mają przygotowane obrazki — celowo pominęłam część z nich, ponieważ w ramach tego POC chciałam skupić się głównie na przetestowaniu mechanizmu, a nie na kompletności wszystkich grafik (czytaj: nie chciało mi się ;-)).
 
-W tym projekcie świadomie zrezygnowałam z użycia wektorowej bazy danych ze względu na konieczność działania w czasie rzeczywistym (kontekst z konspektu w zupełności wystarcza).
+W tym projekcie świadomie zrezygnowałam z użycia wektorowej bazy danych ze względu na konieczność działania w czasie rzeczywistym, a kontekst z konspektu w zupełności wystarcza.
 
 
 
