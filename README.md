@@ -2,7 +2,7 @@
 
 ## Opis agenta
 
-LessonAssistant to agent wspierający dziecko podczas lekcji online, w oparciu o dostarczony konspekt lekcji. Działa w trybie głosowym i tekstowym — odpowiada na pytania, udziela wskazówek oraz zachęca do samodzielnego myślenia i szukania rozwiązań.
+**LessonAssistant** to agent wspierający ucznia podczas lekcji online, w oparciu o dostarczony konspekt lekcji. Działa w trybie głosowym i tekstowym — odpowiada na pytania, udziela wskazówek oraz zachęca do samodzielnego myślenia i szukania rozwiązań.
 
 W kanale wideo agent potrafi wyświetlać grafiki lub obrazy związane z rozwiązaniem (np. kolejne kroki lub gotową wersję gry). Potencjalnie może też pokazywać inne materiały graficzne lub wideo — na prośbę dziecka albo z własnej inicjatywy, jeśli uzna, że to potrzebne do lepszego zrozumienia lekcji.
 
@@ -11,7 +11,7 @@ Agent zna imię oraz płeć dziecka, dzięki czemu zwraca się do niego we wła�
 
 ## Instrukcja uruchomienia
 
-Instrukcje dla Linuksa. Nie mam dostępu do Windowsa.
+Instrukcje uruchomienia dla Linuksa. 
 
 W pliku `.env` dodaj klucze:
 ```
@@ -91,6 +91,13 @@ W tym projekcie świadomie zrezygnowałam z użycia wektorowej bazy danych ze wz
 ## Wnioski i uwagi
 
 - Trochę trudno zmusić agenta, żeby mówił naturalnie i nie rozwlekał odpowiedzi. Nadal wypowiedzi są dość formalne i podręcznikowe jak na rozmowę z dzieckiem.
-- Głos w języku polskim ma fatalny amerykański akcent. W Cartesii nie ma prawdziwego polskiego głosu. Zdecydowałam się użyć tego, co było dostępne. Trzeba by poszukać, czy w ogóle istnieje polski głos dostępny w czasie rzeczywistym — to jest absolutnie niezbędne do stworzenia dobrej jakości agenta głosowego dla dzieci! (To będzie też wyzwanie w innych językach).
+- Głos w języku polskim ma fatalny amerykański akcent. W Cartesii nie ma prawdziwego polskiego głosu. Zdecydowałam się użyć tego, co było dostępne. Trzeba by poszukać, czy w ogóle istnieje polski głos dostępny w czasie rzeczywistym — to jest absolutnie niezbędne do stworzenia dobrej jakości agenta głosowego dla dzieci! 
 - W plikach `.sb3` (projektach Scratch) znajduje się plik `project.json`, który zawiera pełną strukturę projektu (np. bloki kodu, sprite’y, zmienne). Można go dodatkowo wykorzystać, żeby agent jeszcze dokładniej podpowiadał dziecku, co zrobić w danym momencie lub jak naprawić błąd. Na potrzeby tego POC nie używałam tych danych, ale w przyszłości można je zintegrować, żeby jeszcze bardziej wzbogacić rozmowę i wsparcie agenta.
 - Wszystkie wyzwania języka polskiego (formalność języka, płeć rozmówcy, akcent) będą równie problematyczne w innych językach.
+- Koszty: 
+  - LLM: w tej chwili agent działa na modelu gpt-4o-mini, który jest tanim modelem
+  - STT: w czasie testowania agenta zużyłam $0.50 z kredytów Deepgrama
+  - TTS: w Cartesii zużyłam ok. 60 tysięcy tokenów (moim zdaniem dużo). Cennik Cartesii jest następujący:  
+    - Plan Startup: 1.25M tokenów na miesiąc: $49/miesiąc
+    - Plan Scale: 8M tokenów na miesiąc: $299/miesiąc
+
