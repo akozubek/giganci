@@ -8,6 +8,8 @@ W kanale wideo agent potrafi wyświetlać grafiki lub obrazy związane z rozwią
 
 Agent zna imię oraz płeć dziecka, dzięki czemu zwraca się do niego we właściwym rodzaju gramatycznym. 
 
+[Film pokazujący działanie agenta](https://www.loom.com/share/0c4bbdbfaf7444fea2b6f74fce8bdbc3?sid=ea41cd36-9aaf-4f45-8fba-e59004f1710c)
+
 
 ## Instrukcja uruchomienia
 
